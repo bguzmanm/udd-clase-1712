@@ -18,6 +18,9 @@ const userSchema = mongoose.Schema({
     type: Boolean,
     default: true
   },
+  posts: [
+    { type: mongoose.Schema.Types.ObjectId, ref: "post" }
+  ],
   salt: String,
 });
 
