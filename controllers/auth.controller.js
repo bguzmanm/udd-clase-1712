@@ -5,11 +5,11 @@ const auth = async (req, res) => {
   try {
     const filter = {
       username: req.body.username,
-      password: req.body.password,
+      // password: req.body.password,
       active: true
     }
     const u = await user.findOne(filter);
-    if (u) {
+    if (u && u?.validPassword(req.body.password)) {
       return res.json({
         msg: "ok",
         token: jwt.getToken(req.body.username) // genero el token y lo agrego al return

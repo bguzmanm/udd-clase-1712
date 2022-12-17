@@ -1,3 +1,5 @@
+const { expressjwt: jwt } = require("express-jwt");
+
 require("dotenv").config();
 
 const getToken = (req) => {
@@ -8,3 +10,12 @@ const getToken = (req) => {
   }
   return null;
 }
+
+const auth = jwt({
+  secret: process.env.SECRET,
+  algorithms: ["HS256"],
+  userProperty: "user",
+  getToken
+});
+
+module.exports = auth;

@@ -15,6 +15,7 @@ const findAll = async (req, res) => {
 const signup = async (req, res) => {
   try {
     let u = new user(req.body);
+    u.hashPassword(req.body.password);
     let resp = await user.create(u);
     return res.json({
       msg: "user created successfully",
